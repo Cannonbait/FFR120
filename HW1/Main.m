@@ -1,12 +1,12 @@
 clear;
 clc;
 AREA_SIZE = 100;
-TOTAL_AGENTS = 100;
-RATIO = [0.9; 0.1; 0];
+TOTAL_AGENTS = 1000;
+RATIO = [0.8; 0.2; 0];
 INITIAL_SUSCEPTIBLE = TOTAL_AGENTS*RATIO(1);
 INITIAL_INFECTED = TOTAL_AGENTS*RATIO(2);
 INITIAL_RESISTANT = TOTAL_AGENTS*RATIO(3);
-INFECTION_RATE = 0.2;
+INFECTION_RATE = 0.5;
 RECOVERY_RATE = 0.005;
 MOVEMENT_RATE = 0.3;     % Refered to as d
 
@@ -37,3 +37,6 @@ while sum(sum(agents(:,:,2))) > 0 && iTimestep <= 5000;
 end
 
 statistics = statistics(1:iTimestep-1,:);
+
+
+PlotStatistics(statistics, MOVEMENT_RATE, INFECTION_RATE, RECOVERY_RATE);
