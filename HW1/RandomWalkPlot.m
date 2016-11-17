@@ -9,4 +9,4 @@ randomWalk = saveVarsMat.randomWalk; % <1000x2 double> too many elements
 clear saveVarsMat;
 
 
-
+plot(randomWalk(:,1), randomWalk(:,2),'DisplayName','randomWalk')
