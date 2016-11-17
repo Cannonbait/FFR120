@@ -21,7 +21,7 @@ tic;
 for iBeta = 1:size(INFECTION_RATE,2)
   infectionRate = INFECTION_RATE(iBeta);
   recoveryRate = infectionRate ./ RATIO_STEPS;
-  for iRecoveryRate = 1:size(recoveryRate,2)
+  parfor iRecoveryRate = 1:size(recoveryRate,2)
     average = 0;
     for iTrial = 1:NUM_TRIALS
       agents = InitializeAgents(AREA_SIZE, INITIAL_SUSCEPTIBLE, INITIAL_INFECTED, INITIAL_RESISTANT);
