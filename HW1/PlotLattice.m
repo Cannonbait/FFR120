@@ -14,6 +14,6 @@ function PlotLattice(latticeFigure, agents)
     end
   end
   hold off;
-  pause(0.1);
+  pause(0.01);
 end
 
