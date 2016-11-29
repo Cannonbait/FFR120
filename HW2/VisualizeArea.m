@@ -11,7 +11,7 @@ function VisualizeArea( area)
   end
   imagesc(area);
   colormap(map);
-  pause(0.1);
+  pause(0.0001);
   
 
 end
