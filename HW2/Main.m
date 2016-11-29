@@ -1,8 +1,8 @@
 clear;
 clc;
-LIGHTNING_RATE = 0.2;
-GROWTH_RATE = 0.3;
-AREA_SIZE = 9;
+LIGHTNING_RATE = 0.8;
+GROWTH_RATE = 0.1;
+AREA_SIZE = 128;
 TIMESTEPS = 20;
 
 area = zeros(AREA_SIZE);
