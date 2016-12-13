@@ -20,19 +20,9 @@ statistics = saveVarsMat.statistics; % <1981x3 double> too many elements
 
 clear saveVarsMat;
 
-EmpiricalFireRatio = zeros(1981,1);
-ComparisonFireRatio = zeros(1981,1);
-for i = 1:nrFires
-  EmpiricalFireRatio(i) = statistics(i,1)/AREA_SIZE^2;
-  ComparisonFireRatio(i) = statistics(i,3)/AREA_SIZE^2;
-end
+PlotData(statistics, nrFires, AREA_SIZE);
 
-EmpiricalFireRatio = sort(EmpiricalFireRatio, 'descend');
-ComparisonFireRatio = sort(ComparisonFireRatio, 'descend');
-ranking = (1:1981) ./ 1981;
 
-loglog(EmpiricalFireRatio, ranking, ComparisonFireRatio, ranking);
-axis tight;
 
 
 
