@@ -1,0 +1,4 @@
+SIZE = 100;
+PROBABILITY = 0.5;
+C = 2;
+
