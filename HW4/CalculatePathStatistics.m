@@ -5,12 +5,14 @@ function [ results ] = CalculatePathStatistics( graph )
 
   
   average = 0;
-  diameter=1;
+  diameter = 1;
   pathsFound = 0;
+  calculatedGraph = zeros(SIZE);
+  calculatedGraph(logical(eye(size(calculatedGraph)))) = 1;
   
   while pathsFound < PATHS_TO_FIND
-    paths = graph^diameter;
-    paths = sign(paths);
+    calculatedGraph = calculatedGraph*graph;
+    paths = sign(calculatedGraph);
     paths(logical(eye(size(paths)))) = 0;
     paths((paths - foundPaths) <= 0 ) = 0;
     foundPaths = foundPaths + paths;
