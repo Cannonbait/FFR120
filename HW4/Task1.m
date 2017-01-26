@@ -2,8 +2,8 @@ clear;
 clc;
 warning('off', 'MATLAB:nchoosek:LargeCoefficient');
 
-SIZE = 100;
-PROBABILITY = 0.5;
+SIZE = 1000;
+PROBABILITY = 0.01;
 
 graph = GenerateERGraph(SIZE, PROBABILITY);
 distributions = CalculateDegreeDistribution(graph);
