@@ -1,11 +1,12 @@
 close all;
 clear;
 clc;
-m = 2;
+m = 5;
 
 VISUALIZE = false;
 NODES_TO_ADD = 5;
-INITIAL_NODES = m*2;
+INITIAL_NODES = 7;
+TOTAL_NODES = NODES_TO_ADD+INITIAL_NODES;
 SIZE = NODES_TO_ADD+INITIAL_NODES;
 graph = GenerateERGraph(INITIAL_NODES, 1);
 initialConnections = EdgeList(graph);
@@ -14,7 +15,7 @@ edgeList = zeros(NODES_TO_ADD*m+numInitialEdges,2);
 edgeList(1:numInitialEdges,:) = initialConnections;
 
 if (VISUALIZE)
-  RenderNetworkCircular(graph);
+  RenderNetworkCircular(ListToGraph(edgeList, TOTAL_NODES));
 end
 
 
@@ -31,17 +32,20 @@ for i=1:NODES_TO_ADD
   end
   
   if (VISUALIZE)
-    RenderNetworkCircular(graph);
+    RenderNetworkCircular(ListToGraph(edgeList, TOTAL_NODES));
   end
 end
-% 
-% distributions = CalculateDegreeDistribution(graph);
-% 
-% predictions = TheoreticalPrediction3(SIZE, m);
-% 
-% range = (1:SIZE)-1;
-% 
-% loglog(range, distributions, range, predictions);
+
+graph = ListToGraph(edgeList, TOTAL_NODES);
+distributions = CalculateDegreeDistribution(graph);
+
+predictions = TheoreticalPrediction3(SIZE, m);
+
+range = (1:SIZE);
+
+
+% plot(range, distributions);
+loglog(range, distributions, range, predictions);
 
 
 
