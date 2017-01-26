@@ -1,45 +1,48 @@
 close all;
 clear;
 clc;
-m = 5;
+m = 2;
 
-VISUALIZE = true;
-NODES_TO_ADD = 100;
-INITIAL_NODES = m*5;
-INITIAL_CONNECTIVITY = 0.1;
+VISUALIZE = false;
+NODES_TO_ADD = 5;
+INITIAL_NODES = m*2;
+SIZE = NODES_TO_ADD+INITIAL_NODES;
+graph = GenerateERGraph(INITIAL_NODES, 1);
+initialConnections = EdgeList(graph);
+numInitialEdges = size((initialConnections),1);
+edgeList = zeros(NODES_TO_ADD*m+numInitialEdges,2);
+edgeList(1:numInitialEdges,:) = initialConnections;
 
-graph = zeros(NODES_TO_ADD+INITIAL_NODES);
-graph(1:INITIAL_NODES, 1:INITIAL_NODES) = GenerateERGraph(INITIAL_NODES, INITIAL_CONNECTIVITY);
-
-if (VISUALIZE == true)
+if (VISUALIZE)
   RenderNetworkCircular(graph);
 end
 
 
 for i=1:NODES_TO_ADD
-  toAdd = zeros(m,1);
-  edgeList = EdgeList(graph);
-  numEdges = length(edgeList);
+  candidates = edgeList(edgeList ~= 0);
+  numEdges = length(candidates);
   
   % Calculate nodes to connect new node to
   for j = 1:m
     index = randi(numEdges);
-    toAdd(j) = edgeList(index);
-    numEdges = numEdges - length(edgeList(edgeList == edgeList(index)));
-    edgeList = edgeList(edgeList ~= edgeList(index));
+    edgeList((i-1)*m+j+numInitialEdges,:) = [i+INITIAL_NODES candidates(index)];
+    numEdges = numEdges - length(candidates(candidates == candidates(index)));
+    candidates = candidates(candidates ~= candidates(index));
   end
   
-  % Connect new node to old nodes
-  for j = 1:m
-    graph(INITIAL_NODES+i,toAdd(j)) = 1;
-    graph(toAdd(j), INITIAL_NODES+i) = 1;
-  end
-  if (VISUALIZE == true)
+  if (VISUALIZE)
     RenderNetworkCircular(graph);
   end
-  
-
 end
+% 
+% distributions = CalculateDegreeDistribution(graph);
+% 
+% predictions = TheoreticalPrediction3(SIZE, m);
+% 
+% range = (1:SIZE)-1;
+% 
+% loglog(range, distributions, range, predictions);
+
 
 
 

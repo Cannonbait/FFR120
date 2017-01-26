@@ -8,7 +8,7 @@ PROBABILITY = 0.01;
 graph = GenerateERGraph(SIZE, PROBABILITY);
 distributions = CalculateDegreeDistribution(graph);
 
-predictions = TheoreticalPrediction(SIZE, PROBABILITY);
+predictions = TheoreticalPrediction1(SIZE, PROBABILITY);
 
 range = (1:SIZE)-1;
 
