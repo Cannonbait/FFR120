@@ -4,7 +4,7 @@ clc;
 m = 5;
 
 VISUALIZE = false;
-NODES_TO_ADD = 5;
+NODES_TO_ADD = 3500;
 INITIAL_NODES = 7;
 TOTAL_NODES = NODES_TO_ADD+INITIAL_NODES;
 SIZE = NODES_TO_ADD+INITIAL_NODES;
@@ -15,7 +15,7 @@ edgeList = zeros(NODES_TO_ADD*m+numInitialEdges,2);
 edgeList(1:numInitialEdges,:) = initialConnections;
 
 if (VISUALIZE)
-  RenderNetworkCircular(ListToGraph(edgeList, TOTAL_NODES));
+  VisualizeGraph(ListToGraph(edgeList, TOTAL_NODES));
 end
 
 
@@ -32,7 +32,7 @@ for i=1:NODES_TO_ADD
   end
   
   if (VISUALIZE)
-    RenderNetworkCircular(ListToGraph(edgeList, TOTAL_NODES));
+    VisualizeGraph(ListToGraph(edgeList, TOTAL_NODES));
   end
 end
 
